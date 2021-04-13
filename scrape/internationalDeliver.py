@@ -14,19 +14,26 @@ elements  = driver.find_elements_by_class_name("site-nav__dropdown-link")
 collections = list()
 
 for elem in elements:
-    collections.append(elem.get_attribute("innerText"))
+    collections.append(elem.get_attribute("href"))
 
-links = list()
-for collect in collections:
-    if len(collect.split(" ")) == 1:
-        links.append("https://internationaldeliver.shop/collections/" + collect)
-    else:
-        link = collect.split(" ")
-        link = "-".join(link)
-        links.append("https://internationaldeliver.shop/collections/" + link + "/" + link)
+# links = list()
+# for collect in collections:
+#     if len(collect.split(" ")) == 1:
+#         links.append("https://internationaldeliver.shop/collections/" + collect)
+#     else:
+#         link = collect.split(" ")
+#         link = "-".join(link)
+#         links.append("https://internationaldeliver.shop/collections/" + link + "/" + link)
 
+collectionWithLinks = list()
 
-print(links)
+for link in collections: 
+    driver.get(link)
+    products = driver.find_elements_by_class_name("grid-product__meta")
+    for product in products:
+        collectionWithLinks.append({ "collection": "null-for-now", "link": product.get_attribute("href")})
+
+print(collectionWithLinks)
 
 time.sleep(2)
 
