@@ -16,7 +16,17 @@ collections = list()
 for elem in elements:
     collections.append(elem.get_attribute("innerText"))
 
-print(collections)
+links = list()
+for collect in collections:
+    if len(collect.split(" ")) == 1:
+        links.append("https://internationaldeliver.shop/collections/" + collect)
+    else:
+        link = collect.split(" ")
+        link = "-".join(link)
+        links.append("https://internationaldeliver.shop/collections/" + link + "/" + link)
+
+
+print(links)
 
 time.sleep(2)
 
