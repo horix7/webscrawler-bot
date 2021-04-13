@@ -22,15 +22,15 @@ images = [image.get_attribute("src") for image in productImages]
 print(productDescription)
 
 productInfo = dict()
-productInfo["title"] = "".join(productTittle.split(" "))
+productInfo["title"] = "".join(productTittle.split("\n"))
 productInfo["price"] = productPrice.split("RF")[0]
 productInfo["description"] = productDescription
-productInfo["imageUrl"] = "".join(images)
+productInfo["imageUrl"] = images
 
 print(productInfo)
 
 with open('product.json', 'w') as f:
-    json.dump({productInfo}, f)
+    json.dump(productInfo, f)
 
 
 
