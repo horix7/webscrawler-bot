@@ -12,14 +12,15 @@ print(driver.title)
 
 productImages = driver.find_elements_by_class_name("product-single__thumb")
 
-productTittle = driver.find_element_by_class_name("product-single__title product-title-big").get_attribute("innerText")
-productDescription = driver.find_element_by_class_name("product-single__description")
+productTittle = driver.find_element_by_class_name("product-single__title").get_attribute("innerText")
+productDescription = driver.find_element_by_class_name("product-single__description").get_attribute("innerText")
 productPrice = driver.find_element_by_class_name("money").get_attribute("innerText")
+
 
 
 images = [image.get_attribute("src") for image in productImages]
 
-print(productTittle)
+print(productDescription)
 time.sleep(2)
 
 driver.quit()
