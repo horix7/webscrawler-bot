@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-
+import json 
 
 PATH = "/home/paul/Documents/chromedriver"
 
@@ -17,10 +17,18 @@ productDescription = driver.find_element_by_class_name("product-single__descript
 productPrice = driver.find_element_by_class_name("money").get_attribute("innerText")
 
 
-
 images = [image.get_attribute("src") for image in productImages]
 
 print(productDescription)
+
+productInfo = dict()
+productInfo["title"] = "".join(productTittle.split(" "))
+productInfo["price"] = productPrice.split("RF")[0]
+productInfo["description"] = productDescription
+productInfo["imageUrl"] = "".join(images)
+
+print(productInfo)
+
 time.sleep(2)
 
 driver.quit()
