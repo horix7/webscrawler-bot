@@ -1,6 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import json
+
 
 PATH = "/home/paul/Documents/chromedriver"
 
@@ -69,6 +71,10 @@ for eachPage in newCollection:
 
 
 print(savingLinks)
+
+with open('data.json', 'w') as f:
+    json.dump(savingLinks, f)
+
 time.sleep(2)
 
 driver.quit()
