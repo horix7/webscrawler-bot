@@ -63,7 +63,7 @@ for eachPage in newCollection:
 
     print(len(collectionProducts))
     for product in collectionProducts:
-        savingLinks.append({"collection": eachPage["href"], "link": product.get_attribute("href") })
+        savingLinks.append({"collection": eachPage["name"], "link": product.get_attribute("href") })
         try:
             collectionWithLinks[eachPage["name"]] = collectionWithLinks[eachPage["name"]].append(product.get_attribute("href"))
         except:
