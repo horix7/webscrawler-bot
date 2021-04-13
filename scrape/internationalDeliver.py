@@ -25,7 +25,6 @@ for elem in elements[5:7]:
 #         link = "-".join(link)
 #         links.append("https://internationaldeliver.shop/collections/" + link + "/" + link)
 
-collectionWithLinks = dict()
 newCollection = [i for i in collections ]
 
 
@@ -49,20 +48,27 @@ for link in collections:
     except:
         print("---- no pagination ")
     
+collectionWithLinks = dict()
+
+for collectionName in newCollection:
+    collectionWithLinks[collectionName["name"]] = []
+
+savingLinks = list()
+
 for eachPage in newCollection:
     driver.get(eachPage["href"])
     collectionProducts = driver.find_elements_by_class_name("grid-product__meta")
 
     print(len(collectionProducts))
     for product in collectionProducts:
-        print(product.get_attribute("href"))
+        savingLinks.append({"collection": eachPage["href"], "link": product.get_attribute("href") })
         try:
-            collectionWithLinks[eachPage["name"]] = [l for l in  collectionWithLinks[eachPage["name"]]].append(product.get_attribute("href"))
+            collectionWithLinks[eachPage["name"]] = collectionWithLinks[eachPage["name"]].append(product.get_attribute("href"))
         except:
             collectionWithLinks[eachPage["name"]] = [product.get_attribute("href")]
 
 
-print(collectionWithLinks)
+print(savingLinks)
 time.sleep(2)
 
 driver.quit()
