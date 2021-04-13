@@ -14,7 +14,7 @@ elements  = driver.find_elements_by_class_name("site-nav__dropdown-link")
 collections = list()
 
 for elem in elements:
-    collections.append(elem.get_attribute("href"))
+    collections.append({"name": elem.get_attribute("innerText"), "href": elem.get_attribute("href")})
 
 # links = list()
 # for collect in collections:
@@ -28,10 +28,17 @@ for elem in elements:
 collectionWithLinks = list()
 
 for link in collections: 
-    driver.get(link)
+    driver.get(link["href"])
     products = driver.find_elements_by_class_name("grid-product__meta")
-    for product in products:
-        collectionWithLinks.append({ "collection": "null-for-now", "link": product.get_attribute("href")})
+    pagination = driver.find_element_by_class_name("pagination")
+
+    if pagination:
+        print(pagination)
+    else:
+        print("---- no pagination ")
+    # for product in products:
+       
+        # collectionWithLinks.append({ "collection": link["name"], "link": product.get_attribute("href")})
 
 print(collectionWithLinks)
 
