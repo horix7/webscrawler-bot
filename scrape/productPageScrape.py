@@ -23,11 +23,10 @@ print(productDescription)
 
 productInfo = dict()
 productInfo["title"] = "".join(productTittle.split("\n"))
-productInfo["price"] = productPrice.split("RF")[0]
+productInfo["price"] = int(productPrice.split("RF")[0])
 productInfo["description"] = productDescription
 productInfo["imageUrl"] = images
 
-print(productInfo)
 
 with open('product.json', 'w') as f:
     json.dump(productInfo, f)
