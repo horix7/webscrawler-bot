@@ -29,6 +29,11 @@ productInfo["imageUrl"] = "".join(images)
 
 print(productInfo)
 
+with open('product.json', 'w') as f:
+    json.dump({productInfo}, f)
+
+
+
 time.sleep(2)
 
 driver.quit()
