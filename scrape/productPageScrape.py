@@ -31,7 +31,7 @@ for everyLink in allProductsLinks:
     setimages =  [i for j, i in enumerate(images) if i not in images[:j]]
     setimages[0] = setimages[1]
     setimages[1] = setimages[0]
-    productInfo["imageUrl"] = json.dumps(images)
+    productInfo["imageUrl"] = json.dumps(setimages)
     productInfo["collection"] = everyLink["collection"]
 
     productArray.append(productInfo)
