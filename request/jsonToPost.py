@@ -3,7 +3,13 @@ import json
 
 products = json.load(open("/home/paul/Documents/projects/PythonBoto/scrape/allProducts.json"))
 
-validProducts = [ int(i.price) for i in products]
+validProducts = [ { 
+    "price": int("".join(i["price"].split(","))) ,
+    "title": i["title"],
+    "description": i["description"],
+    "imageUrl": i["imageUrl"],
+    "collection": i["collection"]
+} for i in products]
 
 print(validProducts[0])
 # for product in products:
