@@ -29,8 +29,9 @@ for everyLink in allProductsLinks:
     productInfo["price"] = productPrice.split("RF")[0]
     productInfo["description"] = productDescription
     setimages =  [i for j, i in enumerate(images) if i not in images[:j]]
+    firstImage = setimages[0]
     setimages[0] = setimages[1]
-    setimages[1] = setimages[0]
+    setimages[1] = firstImage
     productInfo["imageUrl"] = json.dumps(setimages)
     productInfo["collection"] = everyLink["collection"]
 
