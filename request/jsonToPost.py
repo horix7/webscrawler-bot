@@ -7,7 +7,7 @@ validProducts = [ {
     "price": int("".join(i["price"].split(","))) ,
     "title": i["title"],
     "description": i["description"],
-    "imageUrl": i["imageUrl"],
+    "imageUrl": json.dumps(i["imageUrl"]),
     "collection": i["collection"]
 } for i in products]
 
@@ -19,7 +19,7 @@ for product in validProducts:
     'postman-token': "b5f2957a-178c-512c-3843-a6825685e0e2",
     'content-type': "application/x-www-form-urlencoded"
     }
-    url = "http://206.189.232.135:4000/api/v1/products"
+    url = "https://shoesclimate.herokuapp.com/api/v1/products"
 
     response = requests.request("POST", url, data=product, headers=headers)
     
