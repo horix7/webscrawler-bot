@@ -13,13 +13,22 @@ driver = webdriver.Chrome(PATH)
 
 productArray = list()
 
+def productDescr(element):
+    try:
+        return element.find_element_by_class_name("product-single__description").get_attribute("innerText")
+    except:
+        return " "
+
+
 for everyLink in allProductsLinks:
     driver.get(everyLink["link"])
 
     productImages = driver.find_elements_by_class_name("product-single__photo")
 
     productTittle = driver.find_element_by_class_name("product-single__title").get_attribute("innerText")
-    productDescription = driver.find_element_by_class_name("product-single__description").get_attribute("innerText")
+    
+    productDescription = productDescr(driver)
+
     productPrice = driver.find_element_by_class_name("money").get_attribute("innerText")
 
     images = ["".join(re.split("_300x300|_300x", image.get_attribute("src"))) for image in productImages]
@@ -29,9 +38,13 @@ for everyLink in allProductsLinks:
     productInfo["price"] = productPrice.split("RF")[0]
     productInfo["description"] = productDescription
     setimages =  [i for j, i in enumerate(images) if i not in images[:j]]
-    firstImage = setimages[0]
-    setimages[0] = setimages[1]
-    setimages[1] = firstImage
+    try:
+        firstImage = setimages[0]
+        setimages[0] = setimages[1]
+        setimages[1] = firstImage
+    except:
+        continue
+    
     productInfo["imageUrl"] = setimages
     productInfo["collection"] = everyLink["collection"]
 

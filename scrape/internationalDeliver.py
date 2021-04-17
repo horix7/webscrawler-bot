@@ -15,7 +15,7 @@ elements  = driver.find_elements_by_class_name("site-nav__dropdown-link")
 
 collections = list()
 
-for elem in elements[5:7]:
+for elem in elements:
     collections.append({"name": elem.get_attribute("innerText"), "href": elem.get_attribute("href")})
 
 # links = list()
